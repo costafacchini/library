@@ -65,3 +65,13 @@ $ bin/setup
 # run project
 $ bin/rails s
 ```
+
+## Tests
+
+```bash
+# run all specs and generate coverage files
+$ bin/rspec
+
+# run all specs without coverage files (run in this mode when you want to run faster and don't need to look at the coverage)
+$ NO_COVERAGE=true bin/rspec
+```
