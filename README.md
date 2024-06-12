@@ -9,7 +9,7 @@
 ## Specifications
 
 - [ ] Authentication and Authorization
-  - [ ] Users should be able to register, log in, and log out
+  - [X] Users should be able to register, log in, and log out
   - [ ] Two types of users: Librarian and Member
   - [ ] Only Librarian users should be able to add, edit, or delete books
 
@@ -64,6 +64,9 @@ $ bin/setup
 
 # run project
 $ bin/rails s
+
+# initialize the database with the seed data
+$ bin/rails db:setup
 ```
 
 ## Tests
@@ -75,3 +78,15 @@ $ bin/rspec
 # run all specs without coverage files (run in this mode when you want to run faster and don't need to look at the coverage)
 $ NO_COVERAGE=true bin/rspec
 ```
+
+## Decisions
+
+Considering that librarians work an 8-hour day without breaks, our authentication token for all types of users is valid for 8 hours.
+
+After this time the user will need to authenticate again.
+
+## Default credentials
+
+<strong>email</strong>: `admin@test.com`
+
+<strong>password</strong>: `12345678`
