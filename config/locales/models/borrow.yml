@@ -1,0 +1,11 @@
+en:
+  activerecord:
+    attributes:
+    errors:
+      models:
+        borrow:
+          attributes:
+            member_id:
+              cannot_borrow_the_same_book_multiple_times: You cannot borrow the same book multiple times
+            book_id:
+              cannot_borrow_a_book_unavailable: You cannot borrow a book unavailable

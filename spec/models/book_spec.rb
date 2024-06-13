@@ -7,6 +7,26 @@ RSpec.describe Book, type: :model do
     it { should validate_presence_of(:genre) }
   end
 
+  describe '#borrows' do
+    it { is_expected.to have_many(:borrows).dependent(:destroy) }
+  end
+
+  describe '#available?' do
+    it 'returns true if there is no borrow in progress' do
+      book = create(:book)
+      create(:borrow, book:, returned_at: Date.new(2024, 6, 13))
+
+      expect(book.available?).to eql true
+    end
+
+    it 'returns false if there a borrow in progress' do
+      book = create(:book)
+      create(:borrow, book:, returned_at: nil)
+
+      expect(book.available?).to eql false
+    end
+  end
+
   describe '.by_expression' do
     let!(:book1) { create(:book, title: 'To Kill Mockingbird', author: 'Harper-Lee', genre: 'Novel') }
     let!(:book2) { create(:book, title: 'Ikigai: The Japanese Secret to a Long and Happy Life', author: 'Héctor García', genre: 'Personal Development') }

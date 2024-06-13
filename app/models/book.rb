@@ -3,8 +3,14 @@ class Book < ApplicationRecord
   validates :author, presence: true
   validates :genre, presence: true
 
+  has_many :borrows, dependent: :destroy
+
   before_save :fill_search_with_values
   scope :by_expression, ->(expression) { search_by(expression) if expression.present? }
+
+  def available?
+    borrows.where(borrows: { returned_at: nil }).count.zero?
+  end
 
   private
 

@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe Book, type: :routing do
   describe 'books routing' do
-    it 'routes to index (root)' do
+    it 'routes to index' do
       assert_generates 'v1/books', { controller: 'v1/books', action: 'index' }
     end
 

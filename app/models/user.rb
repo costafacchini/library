@@ -3,6 +3,7 @@ class User < ApplicationRecord
 
   validates :email, presence: true
   validates :name, presence: true
+  has_many :borrows, dependent: :destroy, foreign_key: :member_id
 
   enum role: %i[librarian member]
   # Include default devise modules. Others available are:

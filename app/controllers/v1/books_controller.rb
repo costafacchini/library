@@ -14,7 +14,7 @@ class V1::BooksController < APIController
   end
 
   def create
-    book = Book.create(book_params)
+    book = Book.new(book_params)
 
     if book.save
       render json: book, status: :created
