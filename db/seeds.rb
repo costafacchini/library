@@ -9,7 +9,7 @@
 #   end
 
 # Create a default user as a Admin
-User.create!(name: 'Admin', email: 'admin@test.com', password: '12345678')
+User.create!(name: 'Admin', email: 'admin@test.com', password: '12345678', role: :librarian)
 
 # Create some default books for demo
 Book.new(title: 'To Kill a Mockingbird', author: 'Harper Lee', genre: 'Novel', isbn: '9780061120084', total_copies: 40_000_000).save!

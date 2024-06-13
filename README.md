@@ -10,7 +10,7 @@
 
 - [ ] Authentication and Authorization
   - [X] Users should be able to register, log in, and log out
-  - [ ] Two types of users: Librarian and Member
+  - [X] Two types of users: Librarian and Member
   - [ ] Only Librarian users should be able to add, edit, or delete books
 
 - [ ] Book Management
