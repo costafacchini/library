@@ -1,4 +1,4 @@
-class V1::BooksController < ApplicationController
+class V1::BooksController < APIController
   def index
     expression = params[:expression]
 

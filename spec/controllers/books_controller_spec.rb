@@ -4,7 +4,7 @@ require_relative 'shared_samples_for_authorization'
 RSpec.describe V1::BooksController, type: :controller do
   it_behaves_like 'is authenticable', :book
 
-  let(:current_user) { create(:user) }
+  let(:current_user) { create(:user, role: :librarian) }
 
   describe 'GET /index' do
     before { sign_in current_user }

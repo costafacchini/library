@@ -1,7 +1,7 @@
 class ApplicationController < ActionController::API
   before_action :configure_permitted_parameters, if: :devise_controller?
-  rescue_from ActiveRecord::RecordNotFound, with: :record_not_found
   before_action :authenticate_user!
+  rescue_from ActiveRecord::RecordNotFound, with: :record_not_found
 
   protected
 
