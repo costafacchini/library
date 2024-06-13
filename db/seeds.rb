@@ -12,5 +12,5 @@
 User.create!(name: 'Admin', email: 'admin@test.com', password: '12345678')
 
 # Create some default books for demo
-Book.create!(title: 'To Kill a Mockingbird', author: 'Harper Lee', genre: 'Novel', isbn: '9780061120084', total_copies: 40_000_000)
-Book.create!(title: 'Ikigai: The Japanese Secret to a Long and Happy Life', author: 'Héctor García', genre: 'Personal Development', isbn: '9788543108946', total_copies: 100_000_000)
+Book.new(title: 'To Kill a Mockingbird', author: 'Harper Lee', genre: 'Novel', isbn: '9780061120084', total_copies: 40_000_000).save!
+Book.new(title: 'Ikigai: The Japanese Secret to a Long and Happy Life', author: 'Héctor García', genre: 'Personal Development', isbn: '9788543108946', total_copies: 100_000_000).save!

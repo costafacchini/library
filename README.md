@@ -16,7 +16,7 @@
 - [ ] Book Management
   - [X] Ability to add a new book with details like title, author, genre, ISBN, and total copies
   - [X] Ability to edit and delete book details
-  - [ ] Search functionality: Users should be able to search for a book by title, author, or genre
+  - [X] Search functionality: Users should be able to search for a book by title, author, or genre
 
 - [ ] Borrowing and Returning
   - [ ] Member users should be able to borrow a book if it's available. They can't borrow the same book multiple times

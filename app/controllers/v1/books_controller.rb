@@ -1,6 +1,8 @@
 class V1::BooksController < ApplicationController
   def index
-    books = Book.all
+    expression = params[:expression]
+
+    books = BooksQuery.new.by_expression(expression).call
 
     render json: books, status: :ok
   end
