@@ -9,6 +9,10 @@ class V1::BorrowsControllerPolicy < ApplicationPolicy
     true
   end
 
+  def update?
+    user.librarian?
+  end
+
   class Scope < ApplicationPolicy::Scope
     # NOTE: Be explicit about which records you allow access to!
     # def resolve
