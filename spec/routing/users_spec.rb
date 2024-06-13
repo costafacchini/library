@@ -6,7 +6,7 @@ RSpec.describe User, type: :routing do
       assert_generates 'v1/users', { controller: 'v1/users', action: 'index' }
     end
 
-    it 'does not route to update' do
+    it 'routes to update' do
       assert_generates 'v1/users/1', { controller: 'v1/users', action: 'update', id: 1 }
     end
 
