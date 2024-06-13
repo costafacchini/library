@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   namespace :v1 do
     resources :books
     resources :borrows, only: [ :create ]
+    resources :users, only: [ :index, :update ]
   end
 
   devise_for :users, path: '', path_names: {
