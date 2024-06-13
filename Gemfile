@@ -14,11 +14,15 @@ gem 'devise-jwt'
 # Use Rack CORS for handling Cross-Origin Resource Sharing (CORS), making cross-origin Ajax possible
 # gem "rack-cors"
 
-gem 'simplecov', require: false, group: :test
-
 group :development, :test do
+  gem 'factory_bot_rails'
   gem "debug", platforms: %i[ mri windows ]
   gem "rspec-rails", "~> 6.1.0"
+end
+
+group :test do
+  gem 'simplecov', require: false
+  gem 'shoulda-matchers', '~> 6.0'
 end
 
 group :development do

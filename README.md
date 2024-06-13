@@ -14,8 +14,8 @@
   - [ ] Only Librarian users should be able to add, edit, or delete books
 
 - [ ] Book Management
-  - [ ] Ability to add a new book with details like title, author, genre, ISBN, and total copies
-  - [ ] Ability to edit and delete book details
+  - [X] Ability to add a new book with details like title, author, genre, ISBN, and total copies
+  - [X] Ability to edit and delete book details
   - [ ] Search functionality: Users should be able to search for a book by title, author, or genre
 
 - [ ] Borrowing and Returning
@@ -84,6 +84,8 @@ $ NO_COVERAGE=true bin/rspec
 Considering that librarians work an 8-hour day without breaks, our authentication token for all types of users is valid for 8 hours.
 
 After this time the user will need to authenticate again.
+
+We will use the versioned API in case a modification occurs in the future that breaks the interface.
 
 ## Default credentials
 
