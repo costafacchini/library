@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class V1::BooksController < APIController
   def index
     expression = params[:expression]

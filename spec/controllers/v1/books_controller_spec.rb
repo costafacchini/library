@@ -1,10 +1,12 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 require_relative 'shared_samples_for_authorization'
 
-RSpec.describe V1::BooksController, type: :controller do
-  it_behaves_like 'is authenticable', :book
-
+RSpec.describe V1::BooksController do
   let(:current_user) { create(:user, role: :librarian) }
+
+  it_behaves_like 'is authenticable', :book
 
   describe 'GET /index' do
     before { sign_in current_user }
@@ -12,14 +14,14 @@ RSpec.describe V1::BooksController, type: :controller do
 
     it 'returns success' do
       create(:book, title: 'To Kill a Mockingbird', author: 'Harper Lee', genre: 'Novel', isbn: '9780061120084',
-            total_copies: 40_000_000)
+                    total_copies: 40_000_000)
       create(:book, title: 'Ikigai: The Japanese Secret to a Long and Happy Life', author: 'Héctor García',
-            genre: 'Personal Development', isbn: '9788543108946', total_copies: 100_000_000)
+                    genre: 'Personal Development', isbn: '9788543108946', total_copies: 100_000_000)
 
       get :index
 
       expect(response).to have_http_status(:ok)
-      expect(JSON.parse(response.body).size).to eql(2)
+      expect(response.parsed_body.size).to be(2)
       expect(response.body).to include('To Kill a Mockingbird')
       expect(response.body).to include('Ikigai: The Japanese Secret to a Long and Happy Life')
     end
@@ -60,7 +62,7 @@ RSpec.describe V1::BooksController, type: :controller do
       it 'returns unprocessable entity' do
         post :create, params: { book: { genre: 'Novel' } }
 
-        expect(response).to have_http_status(422)
+        expect(response).to have_http_status(:unprocessable_content)
         expect(response.body).to include('message', "Title can't be blank", "Author can't be blank")
       end
     end
@@ -87,7 +89,7 @@ RSpec.describe V1::BooksController, type: :controller do
 
         patch :update, params: { id: book, book: { title: nil } }
 
-        expect(response).to have_http_status(422)
+        expect(response).to have_http_status(:unprocessable_content)
         expect(response.body).to include('message', "Title can't be blank")
       end
     end

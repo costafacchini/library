@@ -1,6 +1,8 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
-RSpec.describe Dashboard::Member, type: :model do
+RSpec.describe Dashboard::Member do
   describe '#my_books' do
     it 'returns books still borrowed to member' do
       member = create(:user, :member)
@@ -17,7 +19,7 @@ RSpec.describe Dashboard::Member, type: :model do
       subject = described_class.new
       subject.load(member, Date.new(2024, 6, 27))
 
-      expect(subject.my_books.size).to eql 1
+      expect(subject.my_books.size).to be 1
       expect(subject.my_books[0].id).to eql book1.id
       expect(subject.my_books[0].title).to eql 'Book 1'
       expect(subject.my_books[0].borrowed_at).to eql Date.new(2024, 5, 10)
@@ -26,6 +28,8 @@ RSpec.describe Dashboard::Member, type: :model do
   end
 
   describe '#overdue' do
+    # Disabled rubocop because I think it's better to keep the test setup more descriptive
+    # rubocop:disable RSpec/ExampleLength
     it 'returns books overdue to member' do
       member = create(:user, :member)
       another_member = create(:user, :member, email: 'john@doe.com')
@@ -35,19 +39,24 @@ RSpec.describe Dashboard::Member, type: :model do
       book3 = create(:book, title: 'Book 3')
       book4 = create(:book, title: 'Book 4')
 
-      create(:borrow, member:, book: book1, borrowed_at: Date.new(2024, 6, 13), due_date: Date.new(2024, 6, 27), returned_at: nil)
-      create(:borrow, member: another_member, book: book2, borrowed_at: Date.new(2024, 6, 13), due_date: Date.new(2024, 6, 27), returned_at: nil)
-      create(:borrow, member:, book: book3, borrowed_at: Date.new(2024, 6, 13), due_date: Date.new(2024, 6, 27), returned_at: Date.new(2024, 5, 8))
-      create(:borrow, member:, book: book4, borrowed_at: Date.new(2024, 6, 14), due_date: Date.new(2024, 6, 28), returned_at: nil)
+      create(:borrow, member:, book: book1, borrowed_at: Date.new(2024, 6, 13), due_date: Date.new(2024, 6, 27),
+                      returned_at: nil)
+      create(:borrow, member: another_member, book: book2, borrowed_at: Date.new(2024, 6, 13),
+                      due_date: Date.new(2024, 6, 27), returned_at: nil)
+      create(:borrow, member:, book: book3, borrowed_at: Date.new(2024, 6, 13), due_date: Date.new(2024, 6, 27),
+                      returned_at: Date.new(2024, 5, 8))
+      create(:borrow, member:, book: book4, borrowed_at: Date.new(2024, 6, 14), due_date: Date.new(2024, 6, 28),
+                      returned_at: nil)
 
       subject = described_class.new
       subject.load(member, Date.new(2024, 6, 27))
 
-      expect(subject.overdue.size).to eql 1
+      expect(subject.overdue.size).to be 1
       expect(subject.overdue[0].id).to eql book1.id
       expect(subject.overdue[0].title).to eql 'Book 1'
       expect(subject.overdue[0].due_date).to eql Date.new(2024, 6, 27)
     end
+    # rubocop:enable RSpec/ExampleLength
   end
 
   describe '#attributes' do

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class BooksQuery
   def initialize
     @relation = Book.order(:title)

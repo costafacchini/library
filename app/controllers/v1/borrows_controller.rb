@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class V1::BorrowsController < APIController
   def create
     member_id = current_user.id

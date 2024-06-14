@@ -1,6 +1,8 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
-RSpec.describe Borrow, type: :routing do
+RSpec.describe Borrow do
   describe 'borrow routing' do
     it 'routes to create' do
       assert_generates 'v1/borrows', { controller: 'v1/borrows', action: 'create' }

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class V1::UsersControllerPolicy < ApplicationPolicy
   # NOTE: Up to Pundit v2.3.1, the inheritance was declared as
   # `Scope < Scope` rather than `Scope < ApplicationPolicy::Scope`.
@@ -14,9 +16,9 @@ class V1::UsersControllerPolicy < ApplicationPolicy
   end
 
   def permitted_attributes
-    if user.librarian?
-      :role
-    end
+    return unless user.librarian?
+
+    :role
   end
 
   class Scope < ApplicationPolicy::Scope

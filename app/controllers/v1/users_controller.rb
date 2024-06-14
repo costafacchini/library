@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class V1::UsersController < APIController
   def index
     users = User.all

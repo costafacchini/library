@@ -1,10 +1,12 @@
+# frozen_string_literal: true
+
 class Dashboard::Librarian
   include ActiveModel::Serializers::JSON
 
   attr_accessor :total, :total_borrowed, :due_today, :members_overdue
 
   def attributes
-    { "total" => nil, "total_borrowed" => nil, "due_today" => nil, "members_overdue" => nil }
+    { 'total' => nil, 'total_borrowed' => nil, 'due_today' => nil, 'members_overdue' => nil }
   end
 
   def load(_, today)
@@ -25,30 +27,26 @@ class Dashboard::Librarian
   end
 
   def load_books_due_at(today)
-    due_today = []
-
     books = BooksQuery.new.due_at(today).call
-    books.each do |book|
-      due_today << Struct.new(:id, :title, :due_date).new(book.id, book.title, book.borrows.first.due_date)
+    books.map do |book|
+      Struct.new(:id, :title, :due_date).new(book.id, book.title, book.borrows.first.due_date)
     end
-
-    due_today
   end
 
   def load_members_with_overdue_at(today)
-    overdue_today = []
-
     members = UsersQuery.new.with_overdue(today).call
-    members.each do |member|
-      books = []
-      member.borrows.each do |borrow|
-        book = borrow.book
-        books << Struct.new(:id, :title, :due_date).new(book.id, book.title, borrow.due_date)
-      end
+    members.map do |member|
+      Struct.new(:id, :name, :books).new(member.id, member.name, books(member))
+    end
+  end
 
-      overdue_today << Struct.new(:id, :name, :books).new(member.id, member.name, books)
+  def books(member)
+    books = []
+    member.borrows.each do |borrow|
+      book = borrow.book
+      books << Struct.new(:id, :title, :due_date).new(book.id, book.title, borrow.due_date)
     end
 
-    overdue_today
+    books
   end
 end

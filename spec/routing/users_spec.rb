@@ -1,6 +1,8 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
-RSpec.describe User, type: :routing do
+RSpec.describe User do
   describe 'user routing' do
     it 'routes to index' do
       assert_generates 'v1/users', { controller: 'v1/users', action: 'index' }

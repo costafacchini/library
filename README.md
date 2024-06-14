@@ -79,6 +79,13 @@ $ bin/rspec
 $ NO_COVERAGE=true bin/rspec
 ```
 
+## Linter
+
+```bash
+# run linter
+$ bin/rubocop
+```
+
 ## Decisions
 
 Considering that librarians work an 8-hour day without breaks, our authentication token for all types of users is valid for 8 hours.

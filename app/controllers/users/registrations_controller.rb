@@ -9,7 +9,8 @@ class Users::RegistrationsController < Devise::RegistrationsController
     if resource.persisted?
       render json: { message: 'Signed up successfully.', data: current_user.to_json }, status: :created
     else
-      render json: { message: "User couldn't be created successfully. #{current_user.errors.full_messages.to_sentence}" }, status: :unprocessable_entity
+      render json: { message: "User couldn't be created successfully. #{current_user.errors.full_messages}" },
+             status: :unprocessable_entity
     end
   end
 end

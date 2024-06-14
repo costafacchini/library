@@ -1,10 +1,12 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 require_relative 'shared_samples_for_authorization'
 
-RSpec.describe V1::BorrowsController, type: :controller do
-  it_behaves_like 'is authenticable', :borrow, only: [:create, :update]
-
+RSpec.describe V1::BorrowsController do
   let(:current_user) { create(:user, role: :librarian) }
+
+  it_behaves_like 'is authenticable', :borrow, only: %i[create update]
 
   describe 'POST /create' do
     before { sign_in current_user }
@@ -23,10 +25,10 @@ RSpec.describe V1::BorrowsController, type: :controller do
 
     context 'when the borrow is invalid' do
       it 'returns unprocessable entity' do
-        post :create, params: { borrow: { book_id: 98998 } }
+        post :create, params: { borrow: { book_id: 98_998 } }
 
-        expect(response).to have_http_status(422)
-        expect(response.body).to include('message', "Borrowed at can't be blank", "Book must exist")
+        expect(response).to have_http_status(:unprocessable_content)
+        expect(response.body).to include('message', "Borrowed at can't be blank", 'Book must exist')
       end
     end
   end

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class UsersQuery
   def initialize
     @relation = User.order(:id)

@@ -1,13 +1,15 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe V1::DashboardControllerPolicy, type: :policy do
-  let(:user) { build(:user) }
+  subject(:dashboard) { described_class }
 
-  subject { described_class }
+  let(:user) { build(:user) }
 
   permissions :index? do
     it 'grants access' do
-      expect(subject).to permit user
+      expect(dashboard).to permit user
     end
   end
 end

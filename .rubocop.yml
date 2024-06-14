@@ -1,0 +1,32 @@
+require:
+  - rubocop-rails
+  - rubocop-performance
+  - rubocop-rspec
+  - rubocop-rspec_rails
+  - rubocop-factory_bot
+
+AllCops:
+  Exclude:
+    - 'bin/bundle'
+    - 'config/initializers/devise.rb'
+    - 'config/application.rb'
+    - 'db/**/*'
+
+  NewCops: enable
+
+Style/ClassAndModuleChildren:
+  EnforcedStyle: 'compact'
+
+Style/Documentation:
+  Enabled: false
+
+# I think it makes sense to keep tests less divided into files so that it doesn't generate as much indirection
+# when we are trying to read and understand the code
+Metrics/BlockLength:
+  Max: 100
+
+RSpec/MultipleExpectations:
+  Enabled: false
+
+RSpec/ExampleLength:
+  Max: 15

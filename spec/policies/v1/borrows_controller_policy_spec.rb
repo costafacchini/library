@@ -1,13 +1,15 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe V1::BorrowsControllerPolicy, type: :policy do
-  let(:user) { build(:user) }
+  subject(:borow) { described_class }
 
-  subject { described_class }
+  let(:user) { build(:user) }
 
   permissions :create? do
     it 'grants access' do
-      expect(subject).to permit user
+      expect(borow).to permit user
     end
   end
 
@@ -16,7 +18,7 @@ RSpec.describe V1::BorrowsControllerPolicy, type: :policy do
 
     permissions :update? do
       it 'grants access' do
-        expect(subject).to permit user
+        expect(borow).to permit user
       end
     end
   end
@@ -26,7 +28,7 @@ RSpec.describe V1::BorrowsControllerPolicy, type: :policy do
 
     permissions :update? do
       it 'denies access' do
-        expect(subject).not_to permit user
+        expect(borow).not_to permit user
       end
     end
   end

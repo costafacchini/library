@@ -1,5 +1,7 @@
+# frozen_string_literal: true
+
 RSpec.shared_examples 'is authenticable' do |model, only: nil|
-  only ||= [:index, :show, :create, :update, :destroy]
+  only ||= %i[index show create update destroy]
 
   if only.include? :index
     describe 'GET #index' do
