@@ -33,7 +33,7 @@
     - [X] books they've borrowed with their due dates
     - [X] any overdue books
 
-- [ ] API Endpoints
+- [X] API Endpoints
   - [X] Develop a RESTful API that allows CRUD operations for books and borrowings
   - [X] Ensure proper status codes and responses for each endpoint
   - [X] Testing should be done with RSPEC (Spec files should be included for all the requirements above)
