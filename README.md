@@ -98,9 +98,17 @@ The dates for both borrow creation and return are being received by parameter be
 
 ## Default credentials
 
+### Librarian
+
 <strong>email</strong>: `admin@test.com`
 
 <strong>password</strong>: `12345678`
+
+### Member
+
+<strong>email</strong>: `member@test.com`
+
+<strong>password</strong>: `member123`
 
 ## API
 
