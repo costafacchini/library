@@ -9,6 +9,7 @@ Rails.application.routes.draw do
     resources :books
     resources :borrows, only: [ :create, :update ]
     resources :users, only: [ :index, :update ]
+    resources :dashboard, only: [ :index ]
   end
 
   devise_for :users, path: '', path_names: {

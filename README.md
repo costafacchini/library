@@ -23,20 +23,20 @@
   - [X] The system should track when a book was borrowed and when it's due (2 weeks from the borrowing date)
   - [X] Librarian users can mark a book as returned
 
-- [ ] Dashboard
-  - [ ] Librarian: A dashboard showing:
-    - [ ] total books
-    - [ ] total borrowed books
-    - [ ] books due today (list)
-    - [ ] list of members with overdue books
-  - [ ] Member: A dashboard showing:
-    - [ ] books they've borrowed with their due dates
-    - [ ] any overdue books
+- [X] Dashboard
+  - [X] Librarian: A dashboard showing:
+    - [X] total books
+    - [X] total borrowed books
+    - [X] books due today (list)
+    - [X] list of members with overdue books
+  - [X] Member: A dashboard showing:
+    - [X] books they've borrowed with their due dates
+    - [X] any overdue books
 
 - [ ] API Endpoints
   - [X] Develop a RESTful API that allows CRUD operations for books and borrowings
-  - [ ] Ensure proper status codes and responses for each endpoint
-  - [ ] Testing should be done with RSPEC (Spec files should be included for all the requirements above)
+  - [X] Ensure proper status codes and responses for each endpoint
+  - [X] Testing should be done with RSPEC (Spec files should be included for all the requirements above)
 
 - [ ] Frontend (optional)
   - [ ] While the main focus is on Ruby on Rails, you can choose to integrate the backend with a frontend framework of your choice (React, Vue, etc.). The frontend should be responsive and user-friendly
@@ -296,4 +296,12 @@ PATCH /v1/borrows/:id
       "returned_at": "2024-06-13"
 	}
 }
+```
+
+### Endpoint 12: /v1/dashboard
+It is necessary to add the Authorization field in the header with the credentials you copied on the login endpoint.
+
+#### Exemplo de Requisição:
+```json
+GET /v1/dashboard
 ```
