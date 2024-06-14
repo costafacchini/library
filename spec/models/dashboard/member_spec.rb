@@ -39,13 +39,13 @@ RSpec.describe Dashboard::Member do
       book3 = create(:book, title: 'Book 3')
       book4 = create(:book, title: 'Book 4')
 
-      create(:borrow, member:, book: book1, borrowed_at: Date.new(2024, 6, 13), due_date: Date.new(2024, 6, 27),
+      create(:borrow, member:, book: book1, borrowed_at: Date.new(2024, 6, 12), due_date: Date.new(2024, 6, 26),
                       returned_at: nil)
-      create(:borrow, member: another_member, book: book2, borrowed_at: Date.new(2024, 6, 13),
-                      due_date: Date.new(2024, 6, 27), returned_at: nil)
-      create(:borrow, member:, book: book3, borrowed_at: Date.new(2024, 6, 13), due_date: Date.new(2024, 6, 27),
+      create(:borrow, member: another_member, book: book2, borrowed_at: Date.new(2024, 6, 12),
+                      due_date: Date.new(2024, 6, 26), returned_at: nil)
+      create(:borrow, member:, book: book3, borrowed_at: Date.new(2024, 6, 12), due_date: Date.new(2024, 6, 26),
                       returned_at: Date.new(2024, 5, 8))
-      create(:borrow, member:, book: book4, borrowed_at: Date.new(2024, 6, 14), due_date: Date.new(2024, 6, 28),
+      create(:borrow, member:, book: book4, borrowed_at: Date.new(2024, 6, 13), due_date: Date.new(2024, 6, 27),
                       returned_at: nil)
 
       subject = described_class.new
@@ -54,7 +54,7 @@ RSpec.describe Dashboard::Member do
       expect(subject.overdue.size).to be 1
       expect(subject.overdue[0].id).to eql book1.id
       expect(subject.overdue[0].title).to eql 'Book 1'
-      expect(subject.overdue[0].due_date).to eql Date.new(2024, 6, 27)
+      expect(subject.overdue[0].due_date).to eql Date.new(2024, 6, 26)
     end
     # rubocop:enable RSpec/ExampleLength
   end

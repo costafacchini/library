@@ -22,7 +22,7 @@ class BooksQuery
   end
 
   def overdue_to_member(member_id, date)
-    @relation = @relation.includes(:borrows).where(borrows: { member_id:, returned_at: nil, due_date: ..date })
+    @relation = @relation.includes(:borrows).where(borrows: { member_id:, returned_at: nil, due_date: ...date })
 
     self
   end
