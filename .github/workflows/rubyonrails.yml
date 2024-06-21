@@ -25,6 +25,7 @@ jobs:
     env:
       RAILS_ENV: test
       DATABASE_URL: "postgres://rails:password@localhost:5432/rails_test"
+      devise_jwt_secret_key: ${{ secrets.devise_jwt_secret_key }}
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
