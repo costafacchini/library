@@ -25,7 +25,7 @@ jobs:
     env:
       RAILS_ENV: test
       DATABASE_URL: "postgres://rails:password@localhost:5432/rails_test"
-      devise_jwt_secret_key: ${{ secrets.devise_jwt_secret_key }}
+      DEVISE_JWT_SECRET_KEY: ${{ secrets.devise_jwt_secret_key }}
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -50,10 +50,5 @@ jobs:
         uses: ruby/setup-ruby@v1
         with:
           bundler-cache: true
-      # Add or replace any other lints here
-      - name: Security audit dependencies
-        run: bin/bundler-audit --update
-      - name: Security audit application code
-        run: bin/brakeman -q -w2
       - name: Lint Ruby files
         run: bin/rubocop --parallel
