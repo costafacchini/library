@@ -6,12 +6,13 @@ require:
   - rubocop-factory_bot
 
 AllCops:
+  TargetRubyVersion: 3.3.1
   Exclude:
     - 'bin/bundle'
     - 'config/initializers/devise.rb'
     - 'config/application.rb'
     - 'db/**/*'
-    - 'vendor/*/**'
+    - 'vendor/'
 
   NewCops: enable
 
