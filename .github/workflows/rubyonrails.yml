@@ -25,19 +25,22 @@ jobs:
     env:
       RAILS_ENV: test
       DATABASE_URL: "postgres://rails:password@localhost:5432/rails_test"
-      DEVISE_JWT_SECRET_KEY: ${{ secrets.devise_jwt_secret_key }}
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
-      # Add or replace dependency steps here
+      - name: Set up secrets
+        env:
+          RAILS_MASTER_KEY: ${{ secrets.RAILS_MASTER_KEY }}
+        run: |
+          mkdir -p config
+          echo $RAILS_MASTER_KEY > config/master.key
+          openssl aes-256-cbc -K $RAILS_MASTER_KEY -iv $RAILS_MASTER_KEY -in config/credentials.yml.enc -out config/credentials.yml -d
       - name: Install Ruby and gems
         uses: ruby/setup-ruby@v1
         with:
           bundler-cache: true
-      # Add or replace database setup steps here
       - name: Set up database schema
         run: bin/rails db:schema:load
-      # Add or replace test runners here
       - name: Run tests (RSpec)
         run: bin/rspec
 
@@ -51,4 +54,4 @@ jobs:
         with:
           bundler-cache: true
       - name: Lint Ruby files
-        run: bin/rubocop --parallel
+        run: bin/rubocop
