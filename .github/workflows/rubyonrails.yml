@@ -32,7 +32,7 @@ jobs:
 
       - name: Set up secrets
         run: |
-          echo "DEVISE_JWT_SECRET_KEY=$DEVISE_JWT_SECRET_KEY" >> $GITHUB_ENV
+          echo "devise_jwt_secret_key: $DEVISE_JWT_SECRET_KEY" > config/credentials.yml.enc
 
       - name: Install Ruby and gems
         uses: ruby/setup-ruby@v1
