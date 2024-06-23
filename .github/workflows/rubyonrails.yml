@@ -25,16 +25,15 @@ jobs:
     env:
       RAILS_ENV: test
       DATABASE_URL: "postgres://rails:password@localhost:5432/rails_test"
+      DEVISE_JWT_SECRET_KEY: ${{ secrets.DEVISE_JWT_SECRET_KEY }}
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
+
       - name: Set up secrets
-        env:
-          RAILS_MASTER_KEY: ${{ secrets.RAILS_MASTER_KEY }}
         run: |
-          mkdir -p config
-          echo $RAILS_MASTER_KEY > config/master.key
-          openssl aes-256-cbc -K $RAILS_MASTER_KEY -iv $RAILS_MASTER_KEY -in config/credentials.yml.enc -out config/credentials.yml -d
+          echo "DEVISE_JWT_SECRET_KEY=$DEVISE_JWT_SECRET_KEY" >> $GITHUB_ENV
+
       - name: Install Ruby and gems
         uses: ruby/setup-ruby@v1
         with:
