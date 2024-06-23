@@ -15,14 +15,14 @@ jobs:
     runs-on: ubuntu-latest
     env:
       RAILS_ENV: test
-      DEVISE_JWT_SECRET_KEY: ${{ secrets.DEVISE_JWT_SECRET_KEY }}
+      # DEVISE_JWT_SECRET_KEY: ${{ secrets.DEVISE_JWT_SECRET_KEY }}
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Set up secrets
-        run: |
-          echo "devise_jwt_secret_key: $DEVISE_JWT_SECRET_KEY" > config/credentials.yml.enc
+      # - name: Set up secrets
+      #   run: |
+      #     echo "devise_jwt_secret_key: $DEVISE_JWT_SECRET_KEY" > config/credentials.yml.enc
 
       - name: Install Ruby and gems
         uses: ruby/setup-ruby@v1
