@@ -30,6 +30,8 @@ jobs:
           bundler-cache: true
       - name: Set up database schema
         run: bin/rails db:schema:load
+      - name: Lint Ruby files
+        run: bundle exec rubocop --display-cop-names --parallel
       - name: Run tests (RSpec)
         run: bin/rspec
 
