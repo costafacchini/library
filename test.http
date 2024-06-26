@@ -1,0 +1,114 @@
+@token = Bearer eyJhbGciOiJIUzI1NiJ9.eyJqdGkiOiI2MWE4NzVmZi05Yjg0LTRiMWYtYTQwZC1jNDE5ZDVmNzIwYzIiLCJzdWIiOiIxIiwic2NwIjoidXNlciIsImF1ZCI6bnVsbCwiaWF0IjoxNzE5NDM0NDc4LCJleHAiOjE3MTk0NjMyNzh9.G1I0uKk9CFRWojVym1DvA8Pv0toxuUT9GGP3e-SkoKo
+
+POST http://localhost:3000/login HTTP/1.1
+Content-Type: application/json
+
+{
+	"user": {
+      "email": "admin@test.com",
+      "password": "12345678"
+	}
+}
+
+###
+
+DELETE http://localhost:3000/logout HTTP/1.1
+
+###
+
+POST http://localhost:3000/signup HTTP/1.1
+Content-Type: application/json
+
+{
+	"user": {
+      "name": "John Doe",
+      "email": "john@doe.com",
+      "password": "12345678"
+	}
+}
+
+###
+
+PATCH http://localhost:3000/v1/users/:id HTTP/1.1
+Content-Type: application/json
+Authorization: {{token}}
+
+{
+	"user": {
+      "role": "librarian"
+	}
+}
+
+###
+
+GET http://localhost:3000/v1/books?expression=development HTTP/1.1
+Authorization: {{token}}
+
+###
+
+GET http://localhost:3000/v1/books/:id HTTP/1.1
+Authorization: {{token}}
+
+###
+
+POST http://localhost:3000/v1/books HTTP/1.1
+Content-Type: application/json
+Authorization: {{token}}
+
+{
+	"book": {
+      "title": "IT",
+      "author": "Stephen King",
+      "genre": "Terror, Horror"
+	}
+}
+
+###
+
+PATCH http://localhost:3000/v1/books/:id HTTP/1.1
+Content-Type: application/json
+Authorization: {{token}}
+
+{
+	"book": {
+      "title": "IT",
+      "author": "Stephen King",
+      "genre": "Terror, Horror"
+	}
+}
+
+###
+
+DELETE http://localhost:3000/v1/books/:id HTTP/1.1
+Authorization: {{token}}
+
+###
+
+POST http://localhost:3000/v1/borrow HTTP/1.1
+Content-Type: application/json
+Authorization: {{token}}
+
+{
+	"borrow": {
+      "book_id": 1,
+      "borrowed_at": "2024-06-13",
+	}
+}
+
+###
+
+PATCH http://localhost:3000/v1/borrows/:id HTTP/1.1
+Content-Type: application/json
+Authorization: {{token}}
+
+{
+	"borrow": {
+      "returned_at": "2024-06-13"
+	}
+}
+
+###
+
+GET http://localhost:3000/v1/dashboard HTTP/1.1
+Content-Type: application/json
+Authorization: {{token}}

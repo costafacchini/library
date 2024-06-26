@@ -30,8 +30,13 @@ Book.new(title: 'The Very Hungry Caterpillar', author: 'Eric Carle', genre: "Chi
          isbn: '9780399226908', total_copies: 50_000_000).save!
 
 # Create some default borrows for demo
+#returned
 Borrow.new(member: User.find_by_name('Member'), book: Book.find_by_title('To Kill a Mockingbird'), borrowed_at: Date.new(2024, 5, 1),
            returned_at: Date.new(2024, 5, 10)).save!
-Borrow.new(member: User.find_by_name('Member'), book: Book.find_by_title('It'), borrowed_at: Date.new(2024, 5, 22)).save!
+
+#delayed
+Borrow.new(member: User.find_by_name('Member'), book: Book.find_by_title('It'), borrowed_at: (Date.today - 2.week)).save!
+
+#not delayed yet
 Borrow.new(member: User.find_by_name('Member'), book: Book.find_by_title('Clean Code: A Handbook of Agile Software Craftsmanship'),
-           borrowed_at: Date.new(2024, 5, 31)).save!
+           borrowed_at: (Date.today - 1.week)).save!
